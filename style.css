@@ -1,0 +1,217 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #d6efff;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 24px;
+  color: #004080;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #004080;
+  font-weight: bold;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  background: #ffffff;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+}
+
+.hero-text .blue {
+  color: #004080;
+}
+
+.hero-text .orange {
+  color: #ff6600;
+}
+
+.hero-text p {
+  color: #333;
+  margin: 20px 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #ffc107;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.hero-img img {
+  width: 400px;
+  height: auto;
+}
+.form-section {
+  padding: 50px;
+  background: #f7f9fb;
+  max-width: 690px;
+  margin: auto;
+}
+
+.form-section h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #004080;
+}
+
+.asset-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.asset-form label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.asset-form input,
+.asset-form select {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.asset-form .btn {
+  width: 150px;
+  align-self: flex-start;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.asset-form .btn:hover {
+  background-color: #0056b3;
+}
+#asset-list {
+  margin-top: 40px;
+}
+
+#asset-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#asset-list th, #asset-list td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+#asset-list th {
+  background-color: #007bff;
+  color: white;
+}
+
+.action-btn {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #b8b2a1;
+}
+
+.delete-btn {
+  background-color: #e13849;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: px;
+  background-color: #fff;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+table th {
+  background-color: #004080;
+  color: white;
+}
+
+button.edit-btn,
+button.delete-btn {
+  padding: 6px 10px;
+  margin: 2px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+/* Mengatur tombol cetak */
+.print-menu {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-cetak {
+  background-color: #00b4d8; /* Biru Muda */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-cetak:hover {
+  background-color: #0077b6;
+}
+
+/* Menyembunyikan kolom aksi ketika halaman dicetak */
+@media print {
+  .btn-cetak {
+    display: none; /* Menyembunyikan tombol cetak saat mencetak */
+  }
+  
+  #dataTabel td:last-child, 
+  #dataTabel th:last-child {
+    display: none; /* Menyembunyikan kolom aksi */
+  }
+}

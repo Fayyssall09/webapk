@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Aset - SIBISET</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f9fc;
+    }
+
+    .navbar {
+      background-color: #0077b6;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .navbar nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #003f5c;
+    }
+
+    .search-box {
+      text-align: center;
+      margin: 20px auto;
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .search-box input {
+      padding: 12px 40px 12px 20px;
+      width: 100%;
+      border-radius: 30px;
+      border: 2px solid #0077b6;
+      font-size: 16px;
+    }
+
+    .search-box .icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #0077b6;
+      pointer-events: none;
+    }
+
+    table {
+      width: 95%;
+      max-width: 1200px;
+      margin: 30px auto;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border: 1px solid #ccc;
+      text-align: left;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    th {
+      background-color: #0077b6;
+      color: white;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Gaya Tombol Cetak */
+    .btn-cetak {
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .btn-cetak:hover {
+      background-color: #005f7f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-cetak:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-cetak:focus {
+      outline: none;
+    }
+
+    /* CSS untuk menyembunyikan aksi tombol dan tombol cetak saat percetakan */
+    @media print {
+      .btn-edit, .btn-hapus {
+        display: none; /* Sembunyikan tombol Edit dan Hapus */
+      }
+
+      .btn-cetak {
+        display: none; /* Sembunyikan tombol cetak saat dicetak */
+      }
+
+      td:last-child, th:last-child {
+        display: none; /* Sembunyikan kolom aksi (Edit & Hapus) */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">SIBISET</div>
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">Data Aset Baru</a>
+        <a href="faqs.html">Laporan Aset</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <h1>Daftar Data Aset</h1>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="     Cari aset berdasarkan kode, nama, lokasi..." onkeyup="cariData()">
+      <span class="icon">🔍</span>
+    </div>
+
+    <!-- Tombol Cetak -->
+    <div class="print-menu">
+      <button onclick="window.print()" class="btn-cetak">Cetak disini</button>
+    </div>
+
+    <table id="dataTabel">
+      <thead>
+        <tr>
+          <th>Kode</th>
+          <th>Nama</th>
+          <th>Lokasi</th>
+          <th>Tahun</th>
+          <th>Kondisi</th>
+          <th>Waktu Input</th>
+          <th>Harga</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="dataBody">
+        <!-- Data akan dimuat dari file about.html melalui JavaScript -->
+      </tbody>
+    </table>
+  </section>
+
+  <script>
+    // Fungsi pencarian
+    function cariData() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#dataTabel tbody tr");
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+
+    // Menampilkan data dari about.html (misalnya menggunakan localStorage)
+    document.addEventListener("DOMContentLoaded", () => {
+      const dataAset = JSON.parse(localStorage.getItem("dataAset")) || [];
+      const dataBody = document.getElementById("dataBody");
+
+      dataAset.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.kode}</td>
+          <td>${item.nama}</td>
+          <td>${item.lokasi}</td>
+          <td>${item.tahun}</td>
+          <td>${item.kondisi}</td>
+          <td>${item.waktuInput}</td>
+          <td>${item.harga}</td>
+          <td><button class="btn-edit">Edit</button><button class="btn-hapus">Hapus</button></td>
+        `;
+        dataBody.appendChild(row);
+      });
+    });
+  </script>
+
+  <script src="script.js"></script> <!-- Script.js untuk ambil data -->
+</body>
+</html>

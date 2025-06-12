@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - SIBISET</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 50px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #007BFF, #00C9A7);
+      color: white;
+      padding: 20px;
+      border-radius: 20px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .number {
+      font-size: 48px;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">SIBISET</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="about.html">Data Aset Baru</a>
+        <a href="faqs.html">Laporan Aset</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="dashboard">
+    <div class="card">
+      <div class="number" id="totalAset">0</div>
+      <p>Total Aset Terdaftar</p>
+    </div>
+    <div class="card">
+      <div class="number" id="jumlahKecamatan">0</div>
+      <p>Kecamatan Terlibat</p>
+    </div>
+    <div class="card">
+      <div class="number" id="tahunIni">0</div>
+      <p>Aset Tahun Ini</p>
+    </div>
+    <div class="card">
+      <div class="number" id="jumlahLaporan">0</div>
+      <p>Laporan Masuk</p>
+    </div>
+  </section>
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const data = JSON.parse(localStorage.getItem("dataAset")) || [];
+
+    // Ambil elemen statistik
+    const totalAsetEl = document.getElementById("totalAset");
+    const kecamatanEl = document.getElementById("jumlahKecamatan");
+    const tahunIniEl = document.getElementById("tahunIni");
+    const laporanEl = document.getElementById("jumlahLaporan");
+
+    // Hitung statistik
+    const totalAset = data.length;
+    const kecamatanUnik = [...new Set(data.map(item => item.lokasi))].length;
+    const tahunSekarang = new Date().getFullYear();
+    const asetTahunIni = data.filter(item => Number(item.tahun) === tahunSekarang).length;
+
+    // Tampilkan
+    totalAsetEl.textContent = totalAset;
+    kecamatanEl.textContent = kecamatanUnik;
+    tahunIniEl.textContent = asetTahunIni;
+    laporanEl.textContent = totalAset; // Sama dengan total aset
+  });
+</script>
+
+</body>
+</html>

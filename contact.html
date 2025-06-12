@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak - SIBISET PDAM Brebes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #caf0f8, #90e0ef);
+      color: #333;
+    }
+
+    header {
+      background-color: #0077b6;
+      color: white;
+      padding: 25px 0;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .contact-info {
+      flex: 1;
+      background-color: #0077b6;
+      color: white;
+      padding: 40px;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      margin: 12px 0;
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .contact-form h3 {
+      margin-bottom: 20px;
+      color: #0077b6;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #00b4d8;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0,180,216,0.3);
+    }
+
+    .contact-form button {
+      padding: 12px 20px;
+      background-color: #00b4d8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: #0077b6;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background-color: #00b4d8;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-home:hover {
+      background-color: #0077b6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #0077b6;
+      color: white;
+      margin-top: 40px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .contact-info, .contact-form {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Hubungi Kami - SIBISET PDAM Brebes</h1>
+  </header>
+
+  <div class="container">
+    <div class="contact-info">
+      <h2>Informasi Kontak</h2>
+      <p><strong>📍 Alamat:</strong><br>Jl. Taman Siswa No. 3, Brebes</p>
+      <p><strong>📞 Telepon:</strong><br>(0283) 671696</p>
+      <p><strong>📧 Email:</strong><br>info halo.tirtabaribis@.com</p>
+      <p><strong>🕐 Jam Operasional:</strong><br>Senin - Jumat, 08.00 - 16.00 WIB</p>
+    </div>
+
+    <div class="contact-form">
+      <h3>Kirim Pesan Langsung</h3>
+      <form class="form-message">
+        <input type="text" placeholder="Nama Anda" required />
+        <input type="email" placeholder="Email Anda" required />
+        <textarea placeholder="Pesan Anda" rows="5" required></textarea>
+        <button type="submit">Kirim Pesan</button>
+        <br />
+        <a href="index.html" class="back-home">🏠 Kembali ke Beranda</a>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 SIBISET - PDAM Brebes. Semua Hak Dilindungi.
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector(".form-message");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Pesan berhasil dikirim! Terima kasih telah menghubungi kami.");
+        form.reset();
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Aset Baru - SIBISET</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">SIBISET</div>
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">Data Aset Baru</a>
+        <a href="faqs.html">laporan Aset</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="form-section">
+    <h1>Input Data Aset Baru</h1>
+    <form action="#" method="post" class="asset-form">
+      <label for="kode">Kode Aset:</label>
+      <input type="text" id="kode" name="kode" required />
+
+      <label for="nama">Nama Aset:</label>
+      <input type="text" id="nama" name="nama" required />
+
+      <label for="lokasi">Lokasi:</label>
+      <input type="text" id="lokasi" name="lokasi" required />
+
+      <label for="tahun">Tahun Perolehan:</label>
+      <input type="number" id="tahun" name="tahun" required />
+
+      <label for="kondisi">Kondisi:</label>
+      <select id="kondisi" name="kondisi">
+        <option value="Baik">Baik</option>
+        <option value="Rusak Ringan">Rusak Ringan</option>
+        <option value="Rusak Berat">Rusak Berat</option>
+      </select>
+      <label for="harga">Harga Aset (Rp):</label>
+      <input type="text" id="harga" name="harga" required oninput="formatHarga(this)" placeholder="Masukkan harga" />
+
+      <button type="submit" class="btn">Simpan Data</button>
+    </form>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    document.querySelector(".asset-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const kode = document.getElementById("kode").value;
+      const nama = document.getElementById("nama").value;
+      const lokasi = document.getElementById("lokasi").value;
+      const tahun = document.getElementById("tahun").value;
+      const kondisi = document.getElementById("kondisi").value;
+      const harga = document.getElementById("harga").value;
+      const waktuInput = new Date().toLocaleString("id-ID");
+  
+      const newData = {
+        kode, nama, lokasi, tahun, kondisi, harga, waktuInput
+      };
+  
+      // Ambil data lama dari localStorage
+      const dataAset = JSON.parse(localStorage.getItem("dataAset")) || [];
+  
+      // Tambahkan data baru
+      dataAset.push(newData);
+  
+      // Simpan kembali ke localStorage
+      localStorage.setItem("dataAset", JSON.stringify(dataAset));
+  
+      // Reset form
+      this.reset();
+    });
+  
+    // Fungsi format harga
+    function formatHarga(input) {
+      let value = input.value.replace(/[^\d]/g, "");
+      input.value = new Intl.NumberFormat("id-ID").format(value);
+    }
+  </script>
+  
+</body>
+</html>
